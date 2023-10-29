@@ -27,7 +27,7 @@ export class OpenWeatherService {
     });
     params = new HttpParams().set('cityName', cityName);
 
-    return this.httpClient.get<weatherReport>("http://localhost:8080/forecast/", {params, headers: headers});
+    return this.httpClient.get<weatherReport>(environment.apiBaseUrl + "forecast/", {params, headers: headers});
   }
 
   setData(data: any) {
