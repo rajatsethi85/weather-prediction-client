@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "http://localhost:8081/",
+  apiBaseUrl: "http://localhost:8080/",
   apiKey: "Pdt4TKGImrbzs93JMAHRW123slyxdncS5TZqtXLBEKWSf9WcvCUIv5r2TKHoYYAT",
 };
