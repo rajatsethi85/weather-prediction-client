@@ -1,0 +1,139 @@
+.left-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.left-navbar {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  //align-items: center;
+  margin-top: 10px;
+
+}
+.search-icon {
+  flex: 2;
+  text-align: right;
+  margin-right: 8px;
+  margin-left: -28px;
+}
+.search-input {
+  flex: 8;
+} input {
+  font-size: 14px;
+  }
+
+ .error-message {
+   flex: 1;
+   margin-top: -29px;
+   margin-left: 47px;
+   font-size: small;
+   color: red;
+ }
+.empty-error-message {
+  flex: 1;
+  margin-top: -63rem;
+  margin-left: 44px;
+  font-size: small;
+  color: red;
+}
+
+.invalid-input {
+  border: 1.5px solid red; /* Change the border color to red */
+}
+.location-search-icon {
+  flex: 2;
+  position: fixed;
+  text-align: right;
+  margin-left: 10px;
+  margin-top: 2px;
+} button {
+  padding: 1px;
+  }
+
+.left-data-box {
+  flex: 12;
+  display: flex;
+  margin-left: 30px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+.temperature-data {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.other-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-image {
+  flex: 2;
+}
+.weather-image img {
+  width: 120px;
+  height: 120px;
+  margin-left: 55px;
+  }
+.temperature-value {
+  flex: 1px;
+  font-size: 35px;
+  font-weight: normal;
+} sup {
+  position: absolute;
+  }
+.day-time-val {
+  flex: 1;
+  font-weight: 500;
+}
+.weather-summary {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin-top: -25px;
+
+}
+.weather-summary-image{
+  margin-top: 15px;
+  margin-right: 8px;
+
+}
+.weather-summary-image-value {
+  margin-top: 15px;
+}
+
+.rain-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin-top: -10px;
+}
+.rain-stats-image {
+  margin-right: 8px;
+
+}
+.rain-stats-image-value {
+
+}
+.location-details {
+  flex: 3;
+}
+.location-image img{
+  width: 240px;
+  height: 80px;
+  border-radius: 15px;
+}
+.location-name {
+  margin-top: -60px;
+  margin-left: 50px;
+  font-size: large;
+  font-weight: bold;
+
+}
+
+

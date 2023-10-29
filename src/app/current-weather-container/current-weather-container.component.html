@@ -1,0 +1,85 @@
+<div class="left-container">
+  <div class="left-navbar">
+    <div class="search-icon">
+      <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    </div>
+    <div class="search-input">
+      <form (ngSubmit)="forecast(cityName)" #searchForm="ngForm">
+        <input type="text" name="query" id="query" placeholder="Search..."
+               [(ngModel)]="cityName" [required]="true" #queryInput="ngModel"
+               [ngClass]="{'invalid-input': queryInput.invalid && (queryInput.dirty || queryInput.touched)}">
+        <button type="submit" [disabled]="!searchForm.valid" class="location-search-icon">
+          <fa-icon [icon]="faSearchLocation"></fa-icon>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="error" [ngClass]="{ 'error-message' : currentWeatherReport?.cityName && error,
+            'empty-error-message' : error}">{{errorMessage}}</div>
+
+  <div *ngIf="weatherReportAvailable" class="left-data-box">
+    <div class="temperature-data">
+      <div class="weather-image">
+        <img *ngIf="currentWeatherReport?.highWinds" src="assets/windy.png" alt=""/>
+        <img *ngIf="currentWeatherReport?.thunderStorm" src="assets/storm.png" alt=""/>
+        <img *ngIf="currentWeatherReport?.raining" src="assets/raining.png" alt=""/>
+        <img *ngIf="currentWeatherReport?.tooHot" src="assets/sun.png" alt=""/>
+        <img *ngIf="currentWeatherReport?.rainChances && !currentWeatherReport?.raining" src="assets/clouds.png" alt=""/>
+
+      </div>
+      <div class="temperature-value">
+        {{currentWeatherReport?.temperature}}<sup> °C</sup>
+      </div>
+      <div class="day-time-val">
+        {{currentWeatherReport?.dateTime}}
+      </div>
+
+    </div>
+    <div class="other-details">
+      <div class="weather-summary">
+        <div class="weather-summary-image">
+          <fa-icon size="xs" [icon]="faCloud"></fa-icon>
+        </div>
+        <div class="weather-summary-image-value">{{currentWeatherReport?.description}}</div>
+      </div>
+      <div *ngIf="currentWeatherReport?.rainChances" class="weather-summary">
+        <div class="weather-summary-image">
+          <fa-icon size="xs" [icon]="faUmbrella"></fa-icon>
+        </div>
+        <div class="weather-summary-image-value">Carry umbrella</div>
+      </div>
+      <div *ngIf="currentWeatherReport?.tooHot" class="weather-summary">
+        <div class="weather-summary-image">
+          <fa-icon size="xs" [icon]="faSun"></fa-icon>
+        </div>
+        <div class="weather-summary-image-value">Use sunscreen lotion</div>
+      </div>
+      <div *ngIf="currentWeatherReport?.thunderStorm" class="weather-summary">
+        <div class="weather-summary-image">
+          <fa-icon size="xs" [icon]="faThunderstorm"></fa-icon>
+        </div>
+        <div class="weather-summary-image-value">Don’t step out! A Storm is brewing!</div>
+      </div>
+      <div *ngIf="currentWeatherReport?.highWinds" class="weather-summary">
+        <div class="weather-summary-image">
+          <fa-icon size="xs" [icon]="faWind"></fa-icon>
+        </div>
+        <div class="weather-summary-image-value">It’s too windy, watch out!</div>
+      </div>
+      <div class="rain-stats">
+        <div class="rain-stats-image">
+          <fa-icon size="xs" [icon]="faCloudRain"></fa-icon>
+        </div>
+        <div class="rain-stats-image-value">Rain chances - {{currentWeatherReport?.rainChancesPercentage}}%</div>
+      </div>
+      <div class="location-details">
+        <div class="location-image">
+          <img src="assets/city-name.jpg" alt=""/>
+        </div>
+        <div class="location-name">{{currentWeatherReport?.cityName}}, {{currentWeatherReport?.cityCountry}}</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

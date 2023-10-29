@@ -1,0 +1,124 @@
+.right-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.right-navbar {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  font-weight: bold;
+}
+.today {
+  margin-right: 15px;
+  color: #c6c6c6;
+}:hover {
+  color: black;
+   cursor: pointer;
+ }
+ .today-active {
+   color: black;
+ }
+
+.other-days {
+  color: black;
+}
+
+.navbar-tabs {
+  display: flex;
+  flex-direction: row;
+  font-size: x-large;
+  margin-bottom: 16px;
+}
+.underline {
+  width: 50px;
+  height: 1.3px;
+  background-color: black;
+  margin-top: 1.8rem;
+}
+.underline-other-days {
+  transform: translate3d(-90%,0,0);
+  transition: 100ms;
+  width: 6.3rem;
+}
+
+.right-data-box {
+  flex: 12;
+  display: flex;
+  flex-direction: column;
+  //margin-left: 5px;
+}
+.other-days-cards-box {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: -20px;
+}
+.other-days-card {
+  width: 20%;
+  height: 99%;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+  font-weight: 500;
+}
+.week-day-name {
+  font-weight: bolder;
+  font-size: x-large;
+  margin: 12px 5px 15px;
+
+}
+.card-image img {
+  width: 30px;
+  height: 30px;
+
+}
+.card-temperature {
+  //font-weight: bold;
+  //font-size: small;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-family: Cambria, monospace;
+}
+.other-days-card-max-temp {
+  font-weight: bolder;
+  font-size: small;
+}
+.other-days-card-min-temp {
+  margin-left: 13px;
+  font-size: small;
+
+}
+.today-highlights-container {
+  flex: 3;
+}
+.today-cards-box {
+  width: 130px;
+  height: 150px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+  font-weight: 500;
+}
+.today-cards-box week-day-name {
+  color: darkgray;
+}
+.testing {
+  flex:2;
+  flex-direction: column;
+}
+
