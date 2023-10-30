@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+           steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rajatsethi85/weather-prediction-client.git']]])
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                 sshagent(credentials: ['2006a74b-7b73-4f38-b8a8-4e37280d32a8']){
+                    sh 'npm install'
+                    sh '/usr/local/node/bin/ng build'
+                    
+                    // Deploy the built PWA to the EC2 instance using SCP
+                    sh 'sudo scp -r ./dist/* /usr/share/nginx/html'
+                 }
+            }
+        }
+    }
+}
