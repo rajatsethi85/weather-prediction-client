@@ -30,7 +30,7 @@
   "dataGroups": [
     {
       "name": "api",
-      "urls": ["http://localhost:8080/forecast/"],
+      "urls": ["http://localhost:8081/"],
       "cacheConfig": {
         "maxAge": "1h",
         "maxSize": 20,
