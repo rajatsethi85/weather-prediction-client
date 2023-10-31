@@ -13,10 +13,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Run Angular PWA app with service workers on local:
 1. Pull the code from git https://github.com/rajatsethi85/weather-prediction-client.git
 2. Open in any IDE.
-3. Run  ng build --configuration development
-4. This will build the app in dev mode.
-5. Now run http-server -c-1 -p 4200 dist\weather-prediction\
-6. Your application is in running state now.
+3. Run npm i
+4. Run ng build --configuration development
+5. This will build the app in dev mode.
+6. Now run http-server -c-1 -p 4200 dist\weather-prediction\
+7. Your application is in running state now.
 
 ### Access the app on Internet
 http://13.127.161.181/
