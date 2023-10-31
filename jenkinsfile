@@ -14,7 +14,7 @@ pipeline {
                     sh '/usr/local/node/bin/ng build'
 
                     // Deploy the build to the EC2 instance using SCP
-                    sh 'sudo scp -r ./dist/* /usr/share/nginx/html'
+                    sh 'sudo scp -r ./dist/weather-prediction/* /usr/share/nginx/html'
                  }
             }
         }
