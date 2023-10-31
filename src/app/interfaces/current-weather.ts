@@ -1,3 +1,6 @@
+/**
+ * Interface to store current weather report.
+ */
 export interface CurrentWeather {
   temperature?: number;
   dateTime?: string;

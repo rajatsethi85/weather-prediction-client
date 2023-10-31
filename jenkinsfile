@@ -12,8 +12,8 @@ pipeline {
                  sshagent(credentials: ['2006a74b-7b73-4f38-b8a8-4e37280d32a8']){
                     sh 'npm install'
                     sh '/usr/local/node/bin/ng build'
-                    
-                    // Deploy the built PWA to the EC2 instance using SCP
+
+                    // Deploy the build to the EC2 instance using SCP
                     sh 'sudo scp -r ./dist/* /usr/share/nginx/html'
                  }
             }

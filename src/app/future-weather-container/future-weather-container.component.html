@@ -1,7 +1,7 @@
 <div class="right-container">
   <div class="right-navbar">
     <div class="navbar-tabs">
-      <div class="other-days">{{weatherReport?.city.name}} Weather Forecast</div>
+      <div *ngIf="forecastReportAvailable" class="other-days">{{weatherReport?.city.name}} Weather Forecast</div>
     </div>
   </div>
   <div *ngIf="forecastReportAvailable" class="right-data-box">
@@ -9,7 +9,7 @@
       <div *ngFor="let report of weatherReport?.weatherForecastDetails" class="other-days-card">
         <div *ngFor="let hourlyReport of report" class="card-temperature">
           <div>
-            <div class="other-days-card-max-temp">{{hourlyReport.dt}}</div>
+            <div class="other-days-date">{{hourlyReport.dt}}</div>
             <div class="card-temperature">
               <div>{{hourlyReport.main.temp}} °C</div>
               <div>{{hourlyReport.weather[0].description}}</div>

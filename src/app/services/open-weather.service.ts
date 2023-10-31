@@ -2,41 +2,47 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
+import {WeatherReport} from "../interfaces/weather-report";
 
-export interface weatherReport {
-  message?: string;
-  weatherForecastDetails?: any;
-  city?: any;
-}
-
+/**
+ * Service class to fetch weather report from server.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class OpenWeatherService {
-  private weatherReport?: weatherReport;
-  dataSubject = new BehaviorSubject<weatherReport>(this.getData());
-
+  private weatherReport?: WeatherReport;
+  dataSubject = new BehaviorSubject<WeatherReport>(this.getData());
 
   constructor(private httpClient: HttpClient) {
   }
 
-  fetchWeatherReport(cityName: any): Observable<weatherReport> {
+  /**
+   * Method to call the server api and fetch the report.
+   */
+  fetchWeatherReport(cityName: any): Observable<WeatherReport> {
     let params: HttpParams;
     const headers = new HttpHeaders({
       'X-API-KEY': environment.apiKey,
     });
     params = new HttpParams().set('cityName', cityName);
 
-    return this.httpClient.get<weatherReport>(environment.apiBaseUrl + "forecast/", {params, headers: headers});
+    return this.httpClient.get<WeatherReport>(environment.apiBaseUrl + "forecast/", {params, headers: headers});
   }
 
+  /**
+   * Set data to weather report.
+   */
   setData(data: any) {
     this.weatherReport = data;
     this.dataSubject.next(data);
 
   }
 
-  getData(): weatherReport {
-    return <weatherReport>this.weatherReport;
+  /**
+   * Get data from weather report.
+   */
+  getData(): WeatherReport {
+    return <WeatherReport>this.weatherReport;
   }
 }

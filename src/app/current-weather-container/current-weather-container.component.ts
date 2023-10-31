@@ -12,14 +12,17 @@ import {
 import {OpenWeatherService} from "../services/open-weather.service";
 import {CurrentWeather} from "../interfaces/current-weather";
 
+/**
+ * Component to show the current weather report.
+ */
 @Component({
   selector: 'app-current-weather-container',
   templateUrl: './current-weather-container.component.html',
   styleUrls: ['./current-weather-container.component.scss']
 })
-export class CurrentWeatherContainerComponent implements OnInit {
+export class CurrentWeatherContainerComponent {
   currentWeatherReport?: CurrentWeather;
-  weatherForcastHourly?: any;
+  weatherForecastHourly?: any;
   weatherReportAvailable?: boolean = false;
   errorMessage?: string;
   error?: boolean;
@@ -34,21 +37,23 @@ export class CurrentWeatherContainerComponent implements OnInit {
   faUmbrella: any = faUmbrella;
 
   constructor(private weatherReportService: OpenWeatherService) {
-    // this.forecast("Delhi");
+    // When app starts, just showing the weather forecast of city Delhi.
+    this.forecast("Delhi");
   }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Method to fetch the weather report from server and show it to UI.
+   */
   forecast(cityName: any) {
+    this.weatherReportService.setData(null);
     this.currentWeatherReport = {};
     this.weatherReportAvailable = false;
     this.weatherReportService.fetchWeatherReport(cityName).subscribe((resp) => {
       this.error = false;
-      this.weatherForcastHourly = resp.weatherForecastDetails[0];
+      this.weatherForecastHourly = resp.weatherForecastDetails[0];
 
       const currentTimestamp = Date.now();
-      const timestampList: any[] = this.weatherForcastHourly.map((timestamp: { dt: string }) => new Date(timestamp.dt));
+      const timestampList: any[] = this.weatherForecastHourly.map((timestamp: { dt: string }) => new Date(timestamp.dt));
       let nearestTimestamp: number = 0;
       let minTimeDifference: number = 0;
 
@@ -65,7 +70,9 @@ export class CurrentWeatherContainerComponent implements OnInit {
       const nearestDate = new Date(nearestTimestamp);
       const nearestHour = nearestDate.getHours();
 
-      const nearestTimestampWeatherForecast = this.weatherForcastHourly
+      // Just for the more clarity, here we are getting the nearest result for weather form the current time
+      // from the list of weather report of full day.
+      const nearestTimestampWeatherForecast = this.weatherForecastHourly
         .filter((hourly: {
           dt: { toString: () => string | string[]; };
         }) => (hourly.dt.toString().includes(nearestHour.toString())));
@@ -87,17 +94,15 @@ export class CurrentWeatherContainerComponent implements OnInit {
       this.weatherReportAvailable = true;
       this.weatherReportService.setData(resp);
     }, (error) => {
+      this.weatherReportService.setData(null);
       if (error.status === 401) {
         this.errorMessage = "Invalid API key. Check with owner.";
       } else if (error.status === 404) {
-        this.weatherReportService.setData(null);
         this.errorMessage = "City not found";
-      } else if(error.status === 504) {
-        // this.weatherReportService.setData(null);
+      } else if (error.status === 504) {
         this.errorMessage = "Please check you internet.";
       }
       this.error = true;
     });
   }
-
 }
